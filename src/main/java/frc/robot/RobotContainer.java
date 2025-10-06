@@ -4,9 +4,12 @@
 
 package frc.robot;
 
-import static edu.wpi.first.units.Units.derive;
+
 
 import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -14,15 +17,25 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Commands.VisionMoveTo;
+import frc.robot.Constants.LocationConstants;
+import frc.robot.LimelightHelpers.PoseEstimate;
 
 
 
 public class RobotContainer {
-  final CommandXboxController m_driveController = new CommandXboxController(0);
+  final XboxController m_driveController = new XboxController(0);
   final DriveSubsystem m_drive = new DriveSubsystem();
   public RobotContainer() {
+    ShuffleboardTab display = Shuffleboard.getTab("main tab");
     configureBindings();
     LimelightHelpers.setLEDMode_ForceOn("");
+
+
+    display.addDouble("DriveTrain X pose",()-> m_drive.getPose().getX());
+    display.addDouble("Drivetrain Y pose", ()-> m_drive.getPose().getY());
+
+    display.addDouble("Camera X pose", ()-> LimelightHelpers.getBotPose2d_wpiBlue("").getX());
+    display.addDouble("Camera Y pose", ()-> LimelightHelpers.getBotPose2d_wpiBlue("").getY());
   }
 
   private void configureBindings() {
@@ -35,15 +48,20 @@ public class RobotContainer {
     ));
     
     
-    m_driveController.button(8).onTrue(new InstantCommand(()-> m_drive.zeroHeading()));
-
-    //new Trigger(m_driveController.button(1) && m_driveController.button(2)).onTrue(new VisionMoveTo());
+    
+    new Trigger(()-> m_driveController.getLeftBumperButton() && m_driveController.getAButton()).onTrue(new VisionMoveTo());
 
     
 
   }
 
+  
+
   public Command getAutonomousCommand() {
     return Commands.print("No autonomous command configured");
   }
+
+   
+    
+
 }

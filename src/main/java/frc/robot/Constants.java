@@ -6,6 +6,7 @@ package frc.robot;
 
 import com.pathplanner.lib.config.PIDConstants;
 
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
@@ -97,6 +98,11 @@ public class Constants {
   //    kMassKg*.1*DriveConstants.kTrackWidth*DriveConstants.kTrackWidth,
   //    null,
   //     null);
+  }
+
+
+  public static final class LocationConstants{
+    public static final Pose2d kReefSideA = new Pose2d();
   }
 
 }
