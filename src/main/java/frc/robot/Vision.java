@@ -4,13 +4,13 @@
 
 package frc.robot;
 
-import java.util.function.DoubleSupplier;
+
 
 import com.studica.frc.AHRS;
 
 import edu.wpi.first.math.VecBuilder;
-import edu.wpi.first.math.estimator.PoseEstimator;
 import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Vision extends SubsystemBase {
@@ -26,11 +26,15 @@ public class Vision extends SubsystemBase {
     
   }
 
+  public Pose2d getPose(){
+    return LimelightHelpers.getBotPose2d_wpiBlue(name);
+  }
+
   @Override
   public void periodic() {
     doRejectUpdate = false;
     LimelightHelpers.SetRobotOrientation(name, m_PoseEstimator.getEstimatedPosition().getRotation().getDegrees(), 0, 0, 0, 0, 0);
-    LimelightHelpers.PoseEstimate megaTag2 = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("limelight");
+    LimelightHelpers.PoseEstimate megaTag2 = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2(name);
     if(Math.abs(m_gyro.getRate()) > 360){
       doRejectUpdate = true;
     }
@@ -45,7 +49,5 @@ public class Vision extends SubsystemBase {
     
     
 
-    // This method will be called once per scheduler run
-   // m_PoseEstimator.addVisionMeasurement( );
   }
 }

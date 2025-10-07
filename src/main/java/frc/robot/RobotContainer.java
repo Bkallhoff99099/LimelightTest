@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Commands.VisionMoveTo;
 import frc.robot.Constants.LocationConstants;
@@ -36,8 +36,8 @@ public class RobotContainer {
     display.addDouble("DriveTrain X pose",()-> m_drive.getPose().getX());
     display.addDouble("Drivetrain Y pose", ()-> m_drive.getPose().getY());
 
-    display.addDouble("Camera X pose", ()-> LimelightHelpers.getBotPose2d_wpiBlue("limelight").getX());
-    display.addDouble("Camera Y pose", ()-> LimelightHelpers.getBotPose2d_wpiBlue("limelight").getY());
+    display.addDouble("Camera X pose", ()-> limelight1.getPose().getX());
+    display.addDouble("Camera Y pose", ()-> limelight1.getPose().getY());
 
     display.addDouble("Camera TX", ()-> LimelightHelpers.getTX("limelight"));
     display.addDouble("Camera TA", ()-> LimelightHelpers.getTA("limelight"));
