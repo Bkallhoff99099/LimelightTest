@@ -28,14 +28,17 @@ public class RobotContainer {
   public RobotContainer() {
     ShuffleboardTab display = Shuffleboard.getTab("main tab");
     configureBindings();
-    LimelightHelpers.setLEDMode_ForceOn("");
+    LimelightHelpers.setLEDMode_ForceOn("limelight");
 
 
     display.addDouble("DriveTrain X pose",()-> m_drive.getPose().getX());
     display.addDouble("Drivetrain Y pose", ()-> m_drive.getPose().getY());
 
-    display.addDouble("Camera X pose", ()-> LimelightHelpers.getBotPose2d_wpiBlue("").getX());
-    display.addDouble("Camera Y pose", ()-> LimelightHelpers.getBotPose2d_wpiBlue("").getY());
+    display.addDouble("Camera X pose", ()-> LimelightHelpers.getBotPose2d_wpiBlue("limelight").getX());
+    display.addDouble("Camera Y pose", ()-> LimelightHelpers.getBotPose2d_wpiBlue("limelight").getY());
+
+    display.addDouble("Camera TX", ()-> LimelightHelpers.getTX("limelight"));
+    display.addDouble("Camera TA", ()-> LimelightHelpers.getTA("limelight"));
   }
 
   private void configureBindings() {
