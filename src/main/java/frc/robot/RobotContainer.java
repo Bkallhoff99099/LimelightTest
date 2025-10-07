@@ -25,6 +25,8 @@ import frc.robot.LimelightHelpers.PoseEstimate;
 public class RobotContainer {
   final XboxController m_driveController = new XboxController(0);
   final DriveSubsystem m_drive = new DriveSubsystem();
+  final Vision limelight1 = new Vision("limelight", m_drive.getGyro(), m_drive.getPoseEstimator());
+
   public RobotContainer() {
     ShuffleboardTab display = Shuffleboard.getTab("main tab");
     configureBindings();

@@ -405,10 +405,14 @@ public class DriveSubsystem extends SubsystemBase {
    
     
 
+    public AHRS getGyro(){
+      return m_gyro;
+    }
 
 
-
-    
+    public SwerveDrivePoseEstimator getPoseEstimator(){
+      return m_DrivePoseEstimator;
+    }
 
     
 }
