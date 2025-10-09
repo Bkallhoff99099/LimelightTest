@@ -100,9 +100,16 @@ public class Constants {
   //     null);
   }
 
+  
+
 
   public static final class LocationConstants{
     public static final Pose2d kReefSideA = new Pose2d();
+  }
+
+  public static final class CameraNames{
+    public static final String kFrontCamera = "limelight1"; 
+    public static final String kBackCamera = "limelight2";
   }
 
 }

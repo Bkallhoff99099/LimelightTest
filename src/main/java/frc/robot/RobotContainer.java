@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Commands.VisionMoveTo;
+import frc.robot.Constants.CameraNames;
 import frc.robot.Constants.LocationConstants;
 import frc.robot.LimelightHelpers.PoseEstimate;
 
@@ -25,12 +26,12 @@ import frc.robot.LimelightHelpers.PoseEstimate;
 public class RobotContainer {
   final XboxController m_driveController = new XboxController(0);
   final DriveSubsystem m_drive = new DriveSubsystem();
-  final Vision limelight1 = new Vision("limelight", m_drive.getGyro(), m_drive.getPoseEstimator());
+  final Vision limelight1 = new Vision( CameraNames.kFrontCamera, m_drive.getGyro(), m_drive.getPoseEstimator());
 
   public RobotContainer() {
     ShuffleboardTab display = Shuffleboard.getTab("main tab");
     configureBindings();
-    LimelightHelpers.setLEDMode_ForceOn("limelight");
+    LimelightHelpers.setLEDMode_ForceOn(CameraNames.kFrontCamera);
 
 
     display.addDouble("DriveTrain X pose",()-> m_drive.getPose().getX());
@@ -39,8 +40,8 @@ public class RobotContainer {
     display.addDouble("Camera X pose", ()-> limelight1.getPose().getX());
     display.addDouble("Camera Y pose", ()-> limelight1.getPose().getY());
 
-    display.addDouble("Camera TX", ()-> LimelightHelpers.getTX("limelight"));
-    display.addDouble("Camera TA", ()-> LimelightHelpers.getTA("limelight"));
+    display.addDouble("Camera TX", ()-> LimelightHelpers.getTX(CameraNames.kFrontCamera));
+    display.addDouble("Camera TA", ()-> LimelightHelpers.getTA(CameraNames.kFrontCamera));
   }
 
   private void configureBindings() {
