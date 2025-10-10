@@ -55,7 +55,11 @@ public class RobotContainer {
     
     
     
-    new Trigger(()-> m_driveController.getLeftBumperButton() && m_driveController.getAButton()).onTrue(new VisionMoveTo());
+    new Trigger(()-> m_driveController.getLeftBumperButton() && m_driveController.getAButton()).onTrue(
+      m_drive.driveToPose(LocationConstants.kReefSideA
+      ));
+
+      
     new Trigger(()-> m_driveController.getRightBumperButton()).whileTrue( new RunCommand(()->
       m_drive.drive(
         -MathUtil.applyDeadband(m_driveController.getLeftY(), 0.2),
