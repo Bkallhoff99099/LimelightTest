@@ -12,6 +12,7 @@ import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.DriveConstants;
 
 public class Vision extends SubsystemBase {
   /** Creates a new Vision. */
@@ -28,6 +29,22 @@ public class Vision extends SubsystemBase {
 
   public Pose2d getPose(){
     return LimelightHelpers.getBotPose2d_wpiBlue(name);
+  }
+
+  public double aimWithVision(){
+    double kP = .035;
+
+    // tx ranges from (-hfov/2) to (hfov/2) in degrees. If your target is on the rightmost edge of 
+    // your limelight 3 feed, tx should return roughly 31 degrees.
+    double targetingAngularVelocity = LimelightHelpers.getTX(name) * kP;
+
+    // convert to radians per second for our drive method
+    targetingAngularVelocity *= DriveConstants.kMaxAngularSpeed;
+
+    //invert since tx is positive when the target is to the right of the crosshair
+    targetingAngularVelocity *= -1.0;
+
+    return targetingAngularVelocity;
   }
 
   @Override

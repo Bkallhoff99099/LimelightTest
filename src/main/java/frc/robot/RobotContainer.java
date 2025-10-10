@@ -56,6 +56,13 @@ public class RobotContainer {
     
     
     new Trigger(()-> m_driveController.getLeftBumperButton() && m_driveController.getAButton()).onTrue(new VisionMoveTo());
+    new Trigger(()-> m_driveController.getRightBumperButton()).whileTrue( new RunCommand(()->
+      m_drive.drive(
+        -MathUtil.applyDeadband(m_driveController.getLeftY(), 0.2),
+        -MathUtil.applyDeadband(m_driveController.getLeftX(), 0.2),
+        limelight1.aimWithVision(),
+        true), m_drive
+    ));
 
     
 
