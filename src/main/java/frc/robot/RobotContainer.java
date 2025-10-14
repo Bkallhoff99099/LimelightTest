@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.Commands.VisionMoveTo;
+
 import frc.robot.Constants.CameraNames;
 import frc.robot.Constants.LocationConstants;
 import frc.robot.LimelightHelpers.PoseEstimate;
@@ -55,12 +55,12 @@ public class RobotContainer {
     
     
     
-    new Trigger(()-> m_driveController.getLeftBumperButton() && m_driveController.getAButton()).onTrue(
-      m_drive.driveToPose(LocationConstants.kReefSideA
+    new Trigger(()-> m_driveController.getRightBumperButton() && m_driveController.getAButton()).onTrue(
+      m_drive.driveToPose(LocationConstants.kReefSideDRed
       ));
 
-      
-    new Trigger(()-> m_driveController.getRightBumperButton()).whileTrue( new RunCommand(()->
+
+    new Trigger(()-> m_driveController.getLeftBumperButton()).whileTrue( new RunCommand(()->
       m_drive.drive(
         -MathUtil.applyDeadband(m_driveController.getLeftY(), 0.2),
         -MathUtil.applyDeadband(m_driveController.getLeftX(), 0.2),

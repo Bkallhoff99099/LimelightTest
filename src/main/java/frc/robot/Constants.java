@@ -7,6 +7,7 @@ package frc.robot;
 import com.pathplanner.lib.config.PIDConstants;
 
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
@@ -102,9 +103,9 @@ public class Constants {
 
   
 
-
+  // 
   public static final class LocationConstants{
-    public static final Pose2d kReefSideA = new Pose2d();
+    public static final Pose2d kReefSideDRed = new Pose2d(1.0, 0.0, new Rotation2d(0.0));
   }
 
   public static final class CameraNames{
