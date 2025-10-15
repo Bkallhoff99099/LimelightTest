@@ -109,7 +109,7 @@ public class Constants {
   }
 
   public static final class CameraNames{
-    public static final String kFrontCamera = "limelight1"; 
+    public static final String kFrontCamera = "2855limelight_1"; 
     public static final String kBackCamera = "limelight2";
   }
 

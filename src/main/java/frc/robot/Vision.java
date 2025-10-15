@@ -16,19 +16,19 @@ import frc.robot.Constants.DriveConstants;
 
 public class Vision extends SubsystemBase {
   /** Creates a new Vision. */
-  private String name;
+  private String m_name;
   private SwerveDrivePoseEstimator m_PoseEstimator;
   private AHRS m_gyro;
   private boolean doRejectUpdate;
   public Vision(String limelightName,  AHRS gyro, SwerveDrivePoseEstimator poseEstimator) {
-    name  = limelightName;
+    m_name  = limelightName;
     m_gyro = gyro;
     m_PoseEstimator = poseEstimator;
     
   }
 
   public Pose2d getPose(){
-    return LimelightHelpers.getBotPose2d_wpiBlue(name);
+    return LimelightHelpers.getBotPose2d_wpiBlue(m_name);
   }
 
   public double aimWithVision(){
@@ -36,7 +36,7 @@ public class Vision extends SubsystemBase {
 
     // tx ranges from (-hfov/2) to (hfov/2) in degrees. If your target is on the rightmost edge of 
     // your limelight 3 feed, tx should return roughly 31 degrees.
-    double targetingAngularVelocity = LimelightHelpers.getTX(name) * kP;
+    double targetingAngularVelocity = LimelightHelpers.getTX(m_name) * kP;
 
     // convert to radians per second for our drive method
     targetingAngularVelocity *= DriveConstants.kMaxAngularSpeed;
@@ -50,8 +50,8 @@ public class Vision extends SubsystemBase {
   @Override
   public void periodic() {
     doRejectUpdate = false;
-    LimelightHelpers.SetRobotOrientation(name, m_PoseEstimator.getEstimatedPosition().getRotation().getDegrees(), 0, 0, 0, 0, 0);
-    LimelightHelpers.PoseEstimate megaTag2 = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2(name);
+    LimelightHelpers.SetRobotOrientation(m_name, m_PoseEstimator.getEstimatedPosition().getRotation().getDegrees(), 0, 0, 0, 0, 0);
+    LimelightHelpers.PoseEstimate megaTag2 = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2(m_name);
     if(Math.abs(m_gyro.getRate()) > 360){
       doRejectUpdate = true;
     }
