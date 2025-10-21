@@ -32,7 +32,7 @@ public class Vision extends SubsystemBase {
   }
 
   public double aimWithVision(){
-    double kP = .035;
+    double kP = .0017;
 
     // tx ranges from (-hfov/2) to (hfov/2) in degrees. If your target is on the rightmost edge of 
     // your limelight 3 feed, tx should return roughly 31 degrees.
