@@ -20,11 +20,12 @@ public class Vision extends SubsystemBase {
   private SwerveDrivePoseEstimator m_PoseEstimator;
   private AHRS m_gyro;
   private boolean doRejectUpdate;
-  public Vision(String limelightName,  AHRS gyro, SwerveDrivePoseEstimator poseEstimator) {
+  public Vision(String limelightName,  AHRS gyro, SwerveDrivePoseEstimator poseEstimator, double[] config) {
     m_name  = limelightName;
     m_gyro = gyro;
     m_PoseEstimator = poseEstimator;
-    
+
+    LimelightHelpers.setCameraPose_RobotSpace(m_name, config[0], config[1], config[2], config[3], config[4], config[5]);
   }
 
   public Pose2d getPose(){
@@ -46,6 +47,17 @@ public class Vision extends SubsystemBase {
 
     return targetingAngularVelocity;
   }
+
+  public double rangeWithVision(){
+    double kP = .1;
+    double targetingForwardSpeed = LimelightHelpers.getTY(m_name) * kP;
+    targetingForwardSpeed *= DriveConstants.kMaxSpeedMetersPerSecond;
+    targetingForwardSpeed *= -1.0;
+    return targetingForwardSpeed;
+
+  }
+
+
 
   @Override
   public void periodic() {

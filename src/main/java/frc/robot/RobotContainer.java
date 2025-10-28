@@ -16,8 +16,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-
-import frc.robot.Constants.CameraNames;
+import frc.robot.Constants.CameraConstants;
 import frc.robot.Constants.LocationConstants;
 import frc.robot.LimelightHelpers.PoseEstimate;
 
@@ -26,22 +25,22 @@ import frc.robot.LimelightHelpers.PoseEstimate;
 public class RobotContainer {
   final XboxController m_driveController = new XboxController(0);
   final DriveSubsystem m_drive = new DriveSubsystem();
-  final Vision limelight1 = new Vision( CameraNames.kFrontCamera, m_drive.getGyro(), m_drive.getPoseEstimator());
+  final Vision frontCamera = new Vision( CameraConstants.kFrontCamera, m_drive.getGyro(), m_drive.getPoseEstimator(), CameraConstants.kFrontCameraConfig);
 
   public RobotContainer() {
     ShuffleboardTab display = Shuffleboard.getTab("main tab");
     configureBindings();
-    LimelightHelpers.setLEDMode_ForceOn(CameraNames.kFrontCamera);
+    LimelightHelpers.setLEDMode_ForceOn(CameraConstants.kFrontCamera);
 
 
     display.addDouble("DriveTrain X pose",()-> m_drive.getPose().getX());
     display.addDouble("Drivetrain Y pose", ()-> m_drive.getPose().getY());
 
-    display.addDouble("Camera X pose", ()-> limelight1.getPose().getX());
-    display.addDouble("Camera Y pose", ()-> limelight1.getPose().getY());
+    display.addDouble("Camera X pose", ()-> frontCamera.getPose().getX());
+    display.addDouble("Camera Y pose", ()-> frontCamera.getPose().getY());
 
-    display.addDouble("Camera TX", ()-> LimelightHelpers.getTX(CameraNames.kFrontCamera));
-    display.addDouble("Camera TA", ()-> LimelightHelpers.getTA(CameraNames.kFrontCamera));
+    display.addDouble("Camera TX", ()-> LimelightHelpers.getTX(CameraConstants.kFrontCamera));
+    display.addDouble("Camera TA", ()-> LimelightHelpers.getTA(CameraConstants.kFrontCamera));
   }
 
   private void configureBindings() {
@@ -64,9 +63,16 @@ public class RobotContainer {
       m_drive.drive(
         -MathUtil.applyDeadband(m_driveController.getLeftY(), 0.2),
         -MathUtil.applyDeadband(m_driveController.getLeftX(), 0.2),
-        limelight1.aimWithVision(),
+        frontCamera.aimWithVision(),
         true), m_drive
     ));
+
+    new Trigger(()-> m_driveController.getLeftTriggerAxis() > 0.5).whileTrue(new RunCommand(
+      ()->m_drive.drive(
+      frontCamera.rangeWithVision(), 0.0,
+      frontCamera.aimWithVision(),
+       false), 
+       m_drive));
 
     
 

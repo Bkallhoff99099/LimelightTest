@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import static edu.wpi.first.units.Units.Inches;
+
 import com.pathplanner.lib.config.PIDConstants;
 
 import edu.wpi.first.math.geometry.Pose2d;
@@ -105,12 +107,31 @@ public class Constants {
 
   // 
   public static final class LocationConstants{
-    public static final Pose2d kReefSideDRed = new Pose2d(1.0, 0.0, new Rotation2d(0.0));
+    // field is  26 ft. 5 in.  by 57 ft. 6 7/8 in
+    // half field is 28 ft. 9 1/2 in
+    // reef is 5 ft. 5 1/2 in thick
+    // reef is 12 feet away from  alliance wall (driver statsions)
+    // reef Red side A is 201.5 inches from center line
+    // Pose (0,0,0) is center field, facing red?
+    public static final Pose2d kReefSideARed = new Pose2d(Units.inchesToMeters(201.5), 0.0, new Rotation2d(180.0));
+    public static final Pose2d kReefSideDRed = new Pose2d(Units.inchesToMeters(136), 0.0, new Rotation2d(0.0));
+    
   }
 
-  public static final class CameraNames{
+  public static final class CameraConstants{
     public static final String kFrontCamera = "limelight-beast"; 
     public static final String kBackCamera = "limelight2";
+
+    public static final double[] kFrontCameraConfig = {
+      0.0,    // Forward offset (meters)
+      0.0,    // Side offset (meters)
+      0.0,    // Height offset (meters)
+      0.0,    // Roll (degrees)
+      0.0,   // Pitch (degrees)
+      0.0     // Yaw (degrees)
+    };
+
+
   }
 
 }
