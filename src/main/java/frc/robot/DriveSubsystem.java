@@ -22,7 +22,9 @@ import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.networktables.LogMessage;
 import edu.wpi.first.wpilibj.ADIS16470_IMU;
+import edu.wpi.first.wpilibj.DataLogManager;
 import edu.wpi.first.wpilibj.ADIS16470_IMU.IMUAxis;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
@@ -142,6 +144,7 @@ public class DriveSubsystem extends SubsystemBase {
             m_rearLeft.getPosition(),
             m_rearRight.getPosition()
         });
+    DataLogManager.log("Wheel odometry: " + m_odometry.getPoseMeters());
 
     if(isVisionEnabled){
       m_DrivePoseEstimator.update(
@@ -152,7 +155,7 @@ public class DriveSubsystem extends SubsystemBase {
           m_rearLeft.getPosition(),
           m_rearRight.getPosition()
       });
-
+      DataLogManager.log("Vision pose: " + m_DrivePoseEstimator.getEstimatedPosition());
       
     }
 
@@ -358,8 +361,9 @@ public class DriveSubsystem extends SubsystemBase {
 
 
 
-        public Command driveToPose(Pose2d pose)
+    public Command driveToPose(Pose2d pose)
     {
+      DataLogManager.log("Running driveToPose with " + pose);
       // Create the constraints to use while pathfinding
       PathConstraints constraints = new PathConstraints(
           3, 4.0,
@@ -371,6 +375,7 @@ public class DriveSubsystem extends SubsystemBase {
           constraints,
           edu.wpi.first.units.Units.MetersPerSecond.of(0) // Goal end velocity in meters/sec
                                       );
+
     }
 
 

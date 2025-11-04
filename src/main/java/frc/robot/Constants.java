@@ -118,7 +118,7 @@ public class Constants {
     public static final Pose2d kReefSideBRed = new Pose2d(Units.inchesToMeters(185.125), Units.inchesToMeters(16.375), new Rotation2d(Units.degreesToRadians(660)));
     public static final Pose2d kReefSideCRed = new Pose2d(Units.inchesToMeters(152.375), Units.inchesToMeters(16.375), new Rotation2d(Units.degreesToRadians(420)));
     public static final Pose2d kReefSideERed = new Pose2d(Units.inchesToMeters(152.375), -Units.inchesToMeters(16.375), new Rotation2d(Units.degreesToRadians(120)));
-    public static final Pose2d kReefSideFRed = new Pose2d(Units.inchesToMeters(185.125), -Units.inchesToMeters(16.375), new Rotation2d(Units.degreesToRadians(360)));
+    public static final Pose2d kReefSideFRed = new Pose2d(5.22, 5.055, new Rotation2d(Units.degreesToRadians(360)));
 
     public static final Pose2d kReefSideABlue = new Pose2d(-Units.inchesToMeters(201.5), 0.0, new Rotation2d(0.0));
     public static final Pose2d kReefSideDBlue = new Pose2d(-Units.inchesToMeters(136), 0.0, new Rotation2d(Math.PI));
