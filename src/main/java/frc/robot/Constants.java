@@ -113,8 +113,15 @@ public class Constants {
     // reef is 12 feet away from  alliance wall (driver statsions)
     // reef Red side A is 201.5 inches from center line
     // Pose (0,0,0) is center field, facing red?
-    public static final Pose2d kReefSideARed = new Pose2d(Units.inchesToMeters(201.5), 0.0, new Rotation2d(180.0));
+    public static final Pose2d kReefSideARed = new Pose2d(Units.inchesToMeters(201.5), 0.0, new Rotation2d(Math.PI));
     public static final Pose2d kReefSideDRed = new Pose2d(Units.inchesToMeters(136), 0.0, new Rotation2d(0.0));
+    public static final Pose2d kReefSideBRed = new Pose2d(Units.inchesToMeters(185.125), Units.inchesToMeters(16.375), new Rotation2d(Units.degreesToRadians(660)));
+    public static final Pose2d kReefSideCRed = new Pose2d(Units.inchesToMeters(152.375), Units.inchesToMeters(16.375), new Rotation2d(Units.degreesToRadians(420)));
+    public static final Pose2d kReefSideERed = new Pose2d(Units.inchesToMeters(152.375), -Units.inchesToMeters(16.375), new Rotation2d(Units.degreesToRadians(120)));
+    public static final Pose2d kReefSideFRed = new Pose2d(Units.inchesToMeters(185.125), -Units.inchesToMeters(16.375), new Rotation2d(Units.degreesToRadians(360)));
+
+    public static final Pose2d kReefSideABlue = new Pose2d(-Units.inchesToMeters(201.5), 0.0, new Rotation2d(0.0));
+    public static final Pose2d kReefSideDBlue = new Pose2d(-Units.inchesToMeters(136), 0.0, new Rotation2d(Math.PI));
     
   }
 
@@ -123,9 +130,9 @@ public class Constants {
     public static final String kBackCamera = "limelight2";
 
     public static final double[] kFrontCameraConfig = {
-      0.0,    // Forward offset (meters)
+      0.33,    // Forward offset (meters)
       0.0,    // Side offset (meters)
-      0.0,    // Height offset (meters)
+      0.19,    // Height offset (meters)
       0.0,    // Roll (degrees)
       0.0,   // Pitch (degrees)
       0.0     // Yaw (degrees)

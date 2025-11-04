@@ -55,7 +55,7 @@ public class RobotContainer {
     
     
     new Trigger(()-> m_driveController.getRightBumperButton() && m_driveController.getAButton()).onTrue(
-      m_drive.driveToPose(LocationConstants.kReefSideDRed
+      m_drive.driveToPose(LocationConstants.kReefSideFRed
       ));
 
 

@@ -52,7 +52,7 @@ public class Vision extends SubsystemBase {
     double kP = .1;
     double targetingForwardSpeed = LimelightHelpers.getTY(m_name) * kP;
     targetingForwardSpeed *= DriveConstants.kMaxSpeedMetersPerSecond;
-    targetingForwardSpeed *= -1.0;
+    targetingForwardSpeed *= 1.0;
     return targetingForwardSpeed;
 
   }
