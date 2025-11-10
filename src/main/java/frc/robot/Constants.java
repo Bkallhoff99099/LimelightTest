@@ -14,6 +14,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.units.Unit;
 
 /** Add your docs here. */
 public class Constants {
@@ -113,16 +114,19 @@ public class Constants {
     // reef is 12 feet away from  alliance wall (driver statsions)
     // reef Red side A is 201.5 inches from center line
     // Pose (0,0,0) is center field, facing red?
-    public static final Pose2d kReefSideARed = new Pose2d(Units.inchesToMeters(201.5), 0.0, new Rotation2d(Math.PI));
-    public static final Pose2d kReefSideDRed = new Pose2d(Units.inchesToMeters(136), 0.0, new Rotation2d(0.0));
-    public static final Pose2d kReefSideBRed = new Pose2d(Units.inchesToMeters(185.125), Units.inchesToMeters(16.375), new Rotation2d(Units.degreesToRadians(660)));
-    public static final Pose2d kReefSideCRed = new Pose2d(Units.inchesToMeters(152.375), Units.inchesToMeters(16.375), new Rotation2d(Units.degreesToRadians(420)));
-    public static final Pose2d kReefSideERed = new Pose2d(Units.inchesToMeters(152.375), -Units.inchesToMeters(16.375), new Rotation2d(Units.degreesToRadians(120)));
-    public static final Pose2d kReefSideFRed = new Pose2d(5.22, 5.055, new Rotation2d(Units.degreesToRadians(360)));
+    public static final Pose2d kReefSideARed = new Pose2d(14.5,4,new Rotation2d(Units.degreesToRadians(180)));
+    public static final Pose2d kReefSideBRed = new Pose2d(13.75,2.85, new Rotation2d(Units.degreesToRadians(120)));
+    public static final Pose2d kReefSideCRed = new Pose2d(12.4, 2.85, new Rotation2d(Units.degreesToRadians(60)));
+    public static final Pose2d kReefSideDRed = new Pose2d(11.75, 4, new Rotation2d(Units.degreesToRadians(0)));
+    public static final Pose2d kReefSideERed = new Pose2d(12.4, 5.15, new Rotation2d(-Units.degreesToRadians(60)));
+    public static final Pose2d kReefSideFRed = new Pose2d(13.75, 5.15, new Rotation2d(-Units.degreesToRadians(120)));
 
-    public static final Pose2d kReefSideABlue = new Pose2d(-Units.inchesToMeters(201.5), 0.0, new Rotation2d(0.0));
-    public static final Pose2d kReefSideDBlue = new Pose2d(-Units.inchesToMeters(136), 0.0, new Rotation2d(Math.PI));
-    
+    public static final Pose2d kReefSideABlue = new Pose2d(3.15, 4, new Rotation2d(Units.degreesToRadians(0)));
+    public static final Pose2d kReefSideBBlue = new Pose2d(3.8, 5.15, new Rotation2d(-Units.degreesToRadians(60)));
+    public static final Pose2d kReefSideCBlue = new Pose2d(5.15,5.15,new Rotation2d(-Units.degreesToRadians(120)));
+    public static final Pose2d kReefSideDBlue = new Pose2d(5.8, 4, new Rotation2d(Units.degreesToRadians(180)));
+    public static final Pose2d kReefSideEBlue = new Pose2d(5.15, 2.85, new Rotation2d(Units.degreesToRadians(120)));
+    public static final Pose2d kReefSideFBlue = new Pose2d(3.8, 2.85, new Rotation2d(Units.degreesToRadians(60)));
   }
 
   public static final class CameraConstants{
