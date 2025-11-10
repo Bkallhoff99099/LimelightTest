@@ -62,6 +62,14 @@ public class RobotContainer {
       ).alongWith(
       new PrintCommand("Driving to " + LocationConstants.kReefSideFRed + ", now at " + frontCamera.getPose())));
 
+    new Trigger(()-> m_driveController.getBButton()).onTrue(
+      m_drive.driveToPose(LocationConstants.kReefSideARed)
+    );
+
+    new Trigger(()-> m_driveController.getXButton()).onTrue(
+      m_drive.driveToPose(LocationConstants.kReefSideERed)
+    );
+
 
     new Trigger(()-> m_driveController.getLeftBumperButton()).whileTrue( new RunCommand(()->
       m_drive.drive(
